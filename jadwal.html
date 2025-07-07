@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jadwal Pelajaran Interaktif</title>
-  <link rel="stylesheet" href="cssJadwal.css">
+  <link rel="stylesheet" href="cssJadwal.css" />
 </head>
 
 <body>
@@ -34,9 +34,9 @@
       konten.innerHTML = `
         <form id="formKelas">
           <label>Kelas:</label>
-          <input type="text" id="inputKelas" required>
+          <input type="text" id="inputKelas" required placeholder="Contoh: XI">
           <label>Jurusan:</label>
-          <input type="text" id="inputJurusan" required>
+          <input type="text" id="inputJurusan" required placeholder="Contoh: Multimedia">
           <br>
           <button type="submit">Lanjut</button>
         </form>
@@ -44,8 +44,10 @@
 
       document.getElementById("formKelas").addEventListener("submit", function(e){
         e.preventDefault();
-        const k = document.getElementById("inputKelas").value;
-        const j = document.getElementById("inputJurusan").value;
+        const k = document.getElementById("inputKelas").value.trim();
+        const j = document.getElementById("inputJurusan").value.trim();
+
+        if (!k || !j) return alert("Kelas dan jurusan harus diisi!");
 
         localStorage.setItem("kelas", k);
         localStorage.setItem("jurusan", j);
@@ -79,18 +81,17 @@
           </div>
         </form>
 
-   <div class="jadwal-hari">
-         <ul id="daftarJadwal">
-          ${dataHari.map((item, index) => `
-          <li>
-             ${item.jam} - ${item.mapel}
-              <button onclick="editPelajaran(${index})" class="btn-mini">Edit</button>
-        <button onclick="hapusPelajaran(${index})" class="btn-mini btn-hapus">Hapus</button>
-          </li>
-           `).join("")}
-       </ul>
-  </div>
-
+        <div class="jadwal-hari">
+          <ul id="daftarJadwal">
+            ${dataHari.map((item, index) => `
+              <li>
+                ${item.jam} - ${item.mapel}
+                <button onclick="editPelajaran(${index})" class="btn-mini">Edit</button>
+                <button onclick="hapusPelajaran(${index})" class="btn-mini btn-hapus">Hapus</button>
+              </li>
+            `).join("")}
+          </ul>
+        </div>
 
         <div class="center">
           <button onclick="selanjutnya()">Selanjutnya</button>
@@ -114,48 +115,45 @@
         location.reload();
       });
     }
+
     function hapusPelajaran(index) {
-  const key = `jadwal-${hariList[hariIndex]}`;
-  const data = JSON.parse(localStorage.getItem(key)) || [];
-  data.splice(index, 1); // hapus data di urutan index
-  localStorage.setItem(key, JSON.stringify(data)); // simpan ulang
-  location.reload(); // muat ulang tampilan
-}
+      const key = `jadwal-${hariList[hariIndex]}`;
+      const data = JSON.parse(localStorage.getItem(key)) || [];
+      data.splice(index, 1);
+      localStorage.setItem(key, JSON.stringify(data));
+      location.reload();
+    }
 
-function editPelajaran(index) {
-  const key = `jadwal-${hariList[hariIndex]}`;
-  const data = JSON.parse(localStorage.getItem(key)) || [];
-  const item = data[index]; // ambil data lama
+    function editPelajaran(index) {
+      const key = `jadwal-${hariList[hariIndex]}`;
+      const data = JSON.parse(localStorage.getItem(key)) || [];
+      const item = data[index];
 
-  // Isi input form kembali
-  document.getElementById("mapel").value = item.mapel;
-  document.getElementById("jam").value = item.jam;
+      document.getElementById("mapel").value = item.mapel;
+      document.getElementById("jam").value = item.jam;
 
-  // Hapus data lama
-  data.splice(index, 1);
-  localStorage.setItem(key, JSON.stringify(data));
-  // Tidak reload agar user bisa langsung simpan ulang lewat form
-}
+      data.splice(index, 1);
+      localStorage.setItem(key, JSON.stringify(data));
+    }
 
     function selanjutnya() {
-  const hari = hariList[hariIndex];
-  const key = `jadwal-${hari}`;
-  const data = JSON.parse(localStorage.getItem(key)) || [];
+      const hari = hariList[hariIndex];
+      const key = `jadwal-${hari}`;
+      const data = JSON.parse(localStorage.getItem(key)) || [];
 
-  if (data.length === 0) {
-    alert(`Silakan tambahkan minimal satu pelajaran untuk hari ${hari} sebelum melanjutkan.`);
-    return;
-  }
+      if (data.length === 0) {
+        alert(`Isi minimal 1 pelajaran untuk hari ${hari} sebelum lanjut.`);
+        return;
+      }
 
-  if (hariIndex < hariList.length - 1) {
-    hariIndex++;
-    localStorage.setItem("hariIndex", hariIndex);
-    location.reload();
-  } else {
-    window.location.href = "tampilkan.html";
-  }
-}
-
+      if (hariIndex < hariList.length - 1) {
+        hariIndex++;
+        localStorage.setItem("hariIndex", hariIndex);
+        location.reload();
+      } else {
+        window.location.href = "tampilkan.html";
+      }
+    }
 
     function resetSemua() {
       if (confirm("Yakin ingin menghapus semua data?")) {
@@ -163,26 +161,25 @@ function editPelajaran(index) {
         location.reload();
       }
     }
+
     function tampilkanKalenderMini() {
-  const hariLibur = ["Minggu"]; // Kamu bisa tambahkan hari lain jika perlu
-  const namaHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+      const hariLibur = ["Minggu"];
+      const namaHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+      const now = new Date();
+      const hariIni = now.getDay();
 
-  const now = new Date();
-  const hariIni = now.getDay(); // 0 = Minggu, 1 = Senin, dst
+      let html = `<div class="kalender-mini"><h3>Kalender Minggu Ini</h3><ul>`;
+      for (let i = 1; i <= 6; i++) {
+        const aktif = i === hariIni ? "active" : "";
+        const libur = hariLibur.includes(namaHari[i]) ? "libur" : "";
+        html += `<li class="${aktif} ${libur}">${namaHari[i]}</li>`;
+      }
+      html += `</ul></div>`;
 
-  let html = `<div class="kalender-mini"><h3>Kalender Minggu Ini</h3><ul>`;
-  for (let i = 1; i <= 6; i++) { // Senin s/d Sabtu
-    const aktif = i === hariIni ? "active" : "";
-    const libur = hariLibur.includes(namaHari[i]) ? "libur" : "";
-    html += `<li class="${aktif} ${libur}">${namaHari[i]}</li>`;
-  }
-  html += `</ul></div>`;
+      document.getElementById("kalenderMini").innerHTML = html;
+    }
 
-  document.getElementById("kalenderMini").innerHTML = html;
-}
-
-tampilkanKalenderMini();
-
+    tampilkanKalenderMini();
   </script>
 </body>
 </html>
