@@ -300,3 +300,63 @@ button:active {
     width: 100%;
   }
 }
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+    width: 95%;
+    border-radius: 15px;
+  }
+
+  h1, h2, h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+
+  form {
+    gap: 10px;
+  }
+
+  input[type="text"],
+  input[type="time"],
+  select {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .jadwal-hari li {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+
+  button {
+    font-size: 0.95rem;
+    padding: 10px 16px;
+    margin-top: 10px;
+  }
+
+  #tampilan {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .kalender-mini ul {
+    padding: 0;
+    gap: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .kalender-mini li {
+    flex: 1 1 30%;
+    text-align: center;
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+}
