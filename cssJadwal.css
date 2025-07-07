@@ -449,3 +449,90 @@ button:active {
     margin-top: 30px;
   }
 }
+/* === PERBAIKAN TAMPILAN MOBILE SECARA MENYELURUH === */
+@media screen and (max-width: 600px) {
+
+  body {
+    padding: 15px;
+    align-items: flex-start;
+  }
+
+  .container {
+    width: 100%;
+    padding: 20px 15px;
+    border-radius: 16px;
+    margin: 0 auto;
+  }
+
+  .form-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  #formJadwal button {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  select,
+  input[type="time"],
+  input[type="text"],
+  button {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .jadwal-hari li {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+
+  .btn-mini {
+    width: 100%;
+    display: block;
+    margin: 5px 0;
+  }
+
+  .btn-hapus {
+    background-color: #cc3366; /* warna lebih elegan */
+    color: #fff;
+  }
+
+  #kalenderMini {
+    overflow-x: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: 10px;
+  }
+
+  .kalender-mini ul {
+    display: flex;
+    gap: 8px;
+    padding: 0;
+  }
+
+  .kalender-mini li {
+    padding: 6px 12px;
+    border-radius: 8px;
+    white-space: nowrap;
+    font-size: 0.85rem;
+  }
+
+  .water-mark {
+    margin-top: 40px;
+    font-size: 0.8rem;
+  }
+
+  h1, h2 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .center button {
+    width: 100%;
+    margin: 8px 0;
+  }
+}
