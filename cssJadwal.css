@@ -360,3 +360,92 @@ button:active {
     font-size: 0.8rem;
   }
 }
+/* === KHUSUS UNTUK TAMPILAN MOBILE === */
+@media screen and (max-width: 600px) {
+  body {
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 15px;
+    box-sizing: border-box;
+  }
+
+  h1, h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  #formJadwal,
+  #formKelas {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  select, input[type="time"], input[type="text"] {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .jadwal-hari li {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .btn-mini {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  .btn-hapus {
+    background: linear-gradient(135deg, #ff5f6d, #ffc371);
+    color: #fff;
+    font-weight: bold;
+  }
+
+  #kalenderMini ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 0;
+  }
+
+  #kalenderMini li {
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+
+  .center {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .water-mark {
+    font-size: 0.8rem;
+    margin-top: 30px;
+  }
+}
