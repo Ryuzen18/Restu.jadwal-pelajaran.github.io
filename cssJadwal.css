@@ -542,4 +542,4 @@ input[type="time"]:focus::-webkit-calendar-picker-indicator {
 .kalender-mini li.libur {
   opacity: 0.4;
   text-decoration: line-through;
-  }
+}
