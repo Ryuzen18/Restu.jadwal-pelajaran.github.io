@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Input Kelas & Jurusan</title>
+</head>
+<link rel="stylesheet" href="../CSS/cssJadwal.css">
+<body>
+  <div class="container1">
+    <h1>Masukkan Kelas dan Jurusan</h1>
+    <form id="formKelas">
+        <label for="kelas">Kelas:</label>
+        <input type="text" id="kelas" required><br>
+        <label for="jurusan">Jurusan:</label>
+        <input type="text" id="jurusan" required><br>
+
+        <button type="submit">Lanjut</button>
+    </form>
+</div>
+    <script>
+        document.getElementById("formKelas").addEventListener("submit", function(e){
+            e.preventDefault();
+            const kelas = document.getElementById("kelas").value;
+            const jurusan = document.getElementById("jurusan").value;
+
+            localStorage.setItem("kelas", kelas);
+            localStorage.setItem("jurusan", jurusan);
+
+            window.location.href = "jadwal.html";
+        });
+    </script>
+</body>
+</html>

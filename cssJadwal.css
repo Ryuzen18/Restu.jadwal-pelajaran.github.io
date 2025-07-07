@@ -1,0 +1,545 @@
+/* RESET DASAR */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+/* BODY DAN LATAR BELAKANG */
+body {
+  background: linear-gradient(135deg, #254D70, #6C63FF);
+  color: #f1f1f1;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* KOTAK UTAMA */
+.container {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* JUDUL */
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #c9d6ff;
+}
+
+/* FORM INPUT */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input[type="text"], select {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: rgba(255,255,255,0.1);
+  color: white;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #4a00e0, #8e2de2);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* DAFTAR JADWAL */
+.schedule {
+  margin-top: 20px;
+}
+
+.day {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+li {
+  margin: 8px 0;
+  padding: 8px 12px;
+  background-color: rgba(255,255,255,0.05);
+  border-left: 4px solid #6C63FF;
+  border-radius: 6px;
+}
+
+/* FOOTER */
+.water-mark {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* RESPONSIF */
+@media (max-width: 768px) {
+  .container {
+      padding: 20px;
+  }
+
+  h1 {
+      font-size: 2rem;
+  }
+
+  h2 {
+      font-size: 1.3rem;
+  }
+
+  input[type="text"], select {
+      font-size: 0.95rem;
+  }
+}
+
+/* ANIMASI MASUK */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(40px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+/* FORM WRAPPER TERTATA */
+#inputArea {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  animation: fadeIn 0.6s ease;
+}
+
+/* FORM PELAJARAN */
+#formJadwal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+
+
+
+
+/* TOMBOL-GROUP KHUSUS */
+button + button {
+  margin-left: 10px;
+}
+
+/* TAMPILAN AKHIR – tampilkan.html */
+#tampilan {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+/* KARTU HARI */
+#tampilan h2 {
+  text-align: center;
+  background: linear-gradient(135deg, #3a3a3a, #5f5f5f);
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+#tampilan ul {
+  background-color: rgba(255,255,255,0.07);
+  padding: 15px;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+#tampilan li {
+  border-left: 4px solid #6C63FF;
+  background-color: rgba(255,255,255,0.06);
+  padding: 6px 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+
+
+
+
+
+
+#tampilan {
+  margin-top: 30px;
+}
+
+.day {
+  margin-bottom: 20px;
+  background: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.day h3 {
+  background: linear-gradient(to right, #254D70, #6C63FF);
+  padding: 8px;
+  border-radius: 6px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.day ul {
+  padding-left: 20px;
+}
+
+.day li {
+  background: rgba(255,255,255,0.07);
+  margin: 5px 0;
+  padding: 8px 12px;
+  border-left: 4px solid #6C63FF;
+  border-radius: 6px;
+}
+
+
+/* Untuk memastikan opsi dropdown juga terlihat */
+select option {
+  background-color: #1e1e2f;
+  color: #ffffff;
+}
+
+
+
+/* === Layout Umum === */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(145deg, #1f1f2e, #2d2d44);
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 800px;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+/* === Form dan Input === */
+input[type="time"],
+select,
+button {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  appearance: none;
+  cursor: pointer;
+  animation: fadeInUp 0.5s ease forwards;
+  margin-top: 5px;
+}
+
+/* Hover */
+input[type="time"]:hover,
+select:hover,
+button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 12px rgba(138, 43, 226, 0.5);
+  transform: scale(1.02);
+}
+
+/* Fokus */
+input[type="time"]:focus,
+select:focus,
+button:focus {
+  box-shadow: 0 0 14px rgba(108, 99, 255, 0.8);
+  transform: scale(1.03);
+}
+
+/* Tekan tombol */
+button:active {
+  transform: scale(0.98);
+}
+
+/* Select dengan custom panah */
+select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='white' d='M2 0L0 2h4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 10px;
+  padding-right: 30px;
+}
+
+select option {
+  background-color: #1e1e2f;
+  color: #ffffff;
+}
+
+/* === Layout Jadwal Hari === */
+.jadwal-hari ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.jadwal-hari li {
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.jadwal-hari li:hover {
+  transform: scale(1.01);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* === Tombol dan Kontrol === */
+.center {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  margin: 8px;
+}
+
+/* === Watermark === */
+.water-mark {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 30px;
+  opacity: 0.6;
+}
+
+/* === Responsif === */
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* === Form Flex Layout === */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.form-row > * {
+  flex: 1 1 150px;
+  min-width: 120px;
+}
+
+/* === Animasi Muncul === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Kalender Time Icon Style (ikon jam input) === */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  transition: transform 0.3s ease;
+}
+
+input[type="time"]:hover::-webkit-calendar-picker-indicator {
+  transform: scale(1.2);
+  filter: invert(1) brightness(1.2);
+}
+
+input[type="time"]:focus::-webkit-calendar-picker-indicator {
+  animation: putarJam 0.5s ease;
+}
+
+@keyframes putarJam {
+  0% { transform: rotate(0deg) scale(1.1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1.1); }
+}
+
+/* CETAK: Sembunyikan elemen yang tidak perlu saat dicetak */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .btn-cetak,
+  button,
+  .water-mark {
+    display: none !important;
+  }
+
+  .container {
+    box-shadow: none;
+    background: none;
+    padding: 0;
+  }
+
+  #tampilan {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .day, #tampilan ul {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  li {
+    border: none;
+    background: none;
+    padding: 4px;
+  }
+
+  h1, h2, h3 {
+    color: black !important;
+  }
+}
+.btn-mini {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  margin-left: 8px;
+  border-radius: 6px;
+  background-color: rgba(255,255,255,0.1);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-mini:hover {
+  background-color: rgba(255,255,255,0.2);
+  transform: scale(1.05);
+}
+
+.btn-hapus {
+  background-color: rgba(255, 50, 50, 0.2);
+}
+.btn-hapus:hover {
+  background-color: rgba(255, 50, 50, 0.4);
+}
+.kalender-mini {
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  margin-bottom: 25px;
+  animation: fadeIn 0.6s ease;
+}
+
+.kalender-mini h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.kalender-mini ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+}
+
+.kalender-mini li {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: 0.3s;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.kalender-mini li.active {
+  background-color: #6C63FF;
+  font-weight: bold;
+  transform: scale(1.1);
+}
+
+.kalender-mini li.libur {
+  opacity: 0.4;
+  text-decoration: line-through;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lihat Jadwal</title>
+  <link rel="stylesheet" href="../CSS/cssJadwal.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Jadwal Lengkap</h1>
+    <button onclick="cetakJadwal()" class="btn-cetak">Cetak / Simpan PDF</button>
+
+    <div id="tampilan"></div>
+    <div class="center">
+      <button onclick="resetData()">Reset</button>
+    </div>
+    <div class="water-mark">© Restu.P</div>
+  </div>
+
+  <script>
+    const hariList = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+    const kelas = localStorage.getItem("kelas") || "-";
+    const jurusan = localStorage.getItem("jurusan") || "-";
+    const tampilan = document.getElementById("tampilan");
+
+    tampilan.innerHTML += `
+      <div class="info-header">
+        <h2>${kelas} - ${jurusan}</h2>
+        <h2>Jadwal Pelajaran</h2>
+      </div>
+    `;
+
+    for (let hari of hariList) {
+      const data = JSON.parse(localStorage.getItem(`jadwal-${hari}`)) || [];
+      let html = `
+        <div class="day">
+          <h3>${hari}</h3>
+          <ul>
+            ${data.map(item => `<li>${item.jam} - ${item.mapel}</li>`).join("")}
+          </ul>
+        </div>`;
+      tampilan.innerHTML += html;
+    }
+
+    function cetakJadwal() {
+      window.print();
+    }
+    function resetData() {
+      if (confirm("Yakin ingin menghapus semua jadwal?")) {
+        localStorage.clear();
+        window.location.href = "index.html";
+      }
+    }
+  </script>
+</body>
+</html>

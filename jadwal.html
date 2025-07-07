@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jadwal Pelajaran Interaktif</title>
+  <link rel="stylesheet" href="../CSS/cssJadwal.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Jadwal Pelajaran</h1>
+    <div id="kalenderMini"></div>
+    <div id="konten"></div>
+    <div class="water-mark">© Restu.P</div>
+  </div>
+
+  <script>
+    const hariList = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+    let hariIndex = parseInt(localStorage.getItem("hariIndex")) || 0;
+
+    const kelas = localStorage.getItem("kelas");
+    const jurusan = localStorage.getItem("jurusan");
+
+    const konten = document.getElementById("konten");
+
+    if (!kelas || !jurusan) {
+      tampilFormKelasJurusan();
+    } else {
+      tampilFormHari();
+    }
+
+    function tampilFormKelasJurusan() {
+      konten.innerHTML = `
+        <form id="formKelas">
+          <label>Kelas:</label>
+          <input type="text" id="inputKelas" required>
+          <label>Jurusan:</label>
+          <input type="text" id="inputJurusan" required>
+          <br>
+          <button type="submit">Lanjut</button>
+        </form>
+      `;
+
+      document.getElementById("formKelas").addEventListener("submit", function(e){
+        e.preventDefault();
+        const k = document.getElementById("inputKelas").value;
+        const j = document.getElementById("inputJurusan").value;
+
+        localStorage.setItem("kelas", k);
+        localStorage.setItem("jurusan", j);
+        localStorage.setItem("hariIndex", 0);
+        location.reload();
+      });
+    }
+
+    function tampilFormHari() {
+      const hari = hariList[hariIndex];
+      const key = `jadwal-${hari}`;
+      const dataHari = JSON.parse(localStorage.getItem(key)) || [];
+
+      konten.innerHTML = `
+        <h2>${kelas} - ${jurusan}</h2>
+        <h2>Hari: ${hari}</h2>
+
+        <form id="formJadwal">
+          <div class="form-row">
+            <select id="mapel" required>
+              <option value="">-- Pilih Pelajaran --</option>
+              <option>Matematika</option>
+              <option>B.Indonesia</option>
+              <option>Informatika</option>
+              <option>Sejarah</option>
+              <option>Agama</option>
+              <option>Istirahat</option>
+            </select>
+            <input type="time" id="jam" required>
+            <button type="submit">Tambah</button>
+          </div>
+        </form>
+
+   <div class="jadwal-hari">
+         <ul id="daftarJadwal">
+          ${dataHari.map((item, index) => `
+          <li>
+             ${item.jam} - ${item.mapel}
+              <button onclick="editPelajaran(${index})" class="btn-mini">Edit</button>
+        <button onclick="hapusPelajaran(${index})" class="btn-mini btn-hapus">Hapus</button>
+          </li>
+           `).join("")}
+       </ul>
+  </div>
+
+
+        <div class="center">
+          <button onclick="selanjutnya()">Selanjutnya</button>
+          <button onclick="resetSemua()">Reset</button>
+        </div>
+      `;
+
+      document.getElementById("formJadwal").addEventListener("submit", function(e){
+        e.preventDefault();
+        const mapel = document.getElementById("mapel").value;
+        const jam = document.getElementById("jam").value;
+
+        if (!mapel || !jam) {
+          alert("Lengkapi pelajaran dan jam!");
+          return;
+        }
+
+        const data = JSON.parse(localStorage.getItem(key)) || [];
+        data.push({ mapel, jam });
+        localStorage.setItem(key, JSON.stringify(data));
+        location.reload();
+      });
+    }
+    function hapusPelajaran(index) {
+  const key = `jadwal-${hariList[hariIndex]}`;
+  const data = JSON.parse(localStorage.getItem(key)) || [];
+  data.splice(index, 1); // hapus data di urutan index
+  localStorage.setItem(key, JSON.stringify(data)); // simpan ulang
+  location.reload(); // muat ulang tampilan
+}
+
+function editPelajaran(index) {
+  const key = `jadwal-${hariList[hariIndex]}`;
+  const data = JSON.parse(localStorage.getItem(key)) || [];
+  const item = data[index]; // ambil data lama
+
+  // Isi input form kembali
+  document.getElementById("mapel").value = item.mapel;
+  document.getElementById("jam").value = item.jam;
+
+  // Hapus data lama
+  data.splice(index, 1);
+  localStorage.setItem(key, JSON.stringify(data));
+  // Tidak reload agar user bisa langsung simpan ulang lewat form
+}
+
+    function selanjutnya() {
+  const hari = hariList[hariIndex];
+  const key = `jadwal-${hari}`;
+  const data = JSON.parse(localStorage.getItem(key)) || [];
+
+  if (data.length === 0) {
+    alert(`Silakan tambahkan minimal satu pelajaran untuk hari ${hari} sebelum melanjutkan.`);
+    return;
+  }
+
+  if (hariIndex < hariList.length - 1) {
+    hariIndex++;
+    localStorage.setItem("hariIndex", hariIndex);
+    location.reload();
+  } else {
+    window.location.href = "tampilkan.html";
+  }
+}
+
+
+    function resetSemua() {
+      if (confirm("Yakin ingin menghapus semua data?")) {
+        localStorage.clear();
+        location.reload();
+      }
+    }
+    function tampilkanKalenderMini() {
+  const hariLibur = ["Minggu"]; // Kamu bisa tambahkan hari lain jika perlu
+  const namaHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+
+  const now = new Date();
+  const hariIni = now.getDay(); // 0 = Minggu, 1 = Senin, dst
+
+  let html = `<div class="kalender-mini"><h3>Kalender Minggu Ini</h3><ul>`;
+  for (let i = 1; i <= 6; i++) { // Senin s/d Sabtu
+    const aktif = i === hariIni ? "active" : "";
+    const libur = hariLibur.includes(namaHari[i]) ? "libur" : "";
+    html += `<li class="${aktif} ${libur}">${namaHari[i]}</li>`;
+  }
+  html += `</ul></div>`;
+
+  document.getElementById("kalenderMini").innerHTML = html;
+}
+
+tampilkanKalenderMini();
+
+  </script>
+</body>
+</html>
