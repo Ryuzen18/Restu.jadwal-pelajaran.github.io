@@ -1,98 +1,33 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Masukkan Kelas dan Jurusan</title>
-  <link rel="stylesheet" href="cssJadwal.css" />
+    <meta charset="UTF-8">
+    <title>Input Kelas & Jurusan</title>
 </head>
-
 <link rel="stylesheet" href="cssJadwal.css">
-
 <body>
-  <div class="container fade-in">
-    <h1>Jadwal Pelajaran</h1>
-
+  <div class="container1">
+    <h1>Masukkan Kelas dan Jurusan</h1>
     <form id="formKelas">
-      <input type="text" id="inputKelas" placeholder="Masukkan Kelas" required />
-      <input type="text" id="inputJurusan" placeholder="Masukkan Jurusan" required />
-      <button type="submit">Lanjut</button>
+        <label for="kelas">Kelas:</label>
+        <input type="text" id="kelas" required><br>
+        <label for="jurusan">Jurusan:</label>
+        <input type="text" id="jurusan" required><br>
+
+        <button type="submit">Lanjut</button>
     </form>
+</div>
+    <script>
+        document.getElementById("formKelas").addEventListener("submit", function(e){
+            e.preventDefault();
+            const kelas = document.getElementById("kelas").value;
+            const jurusan = document.getElementById("jurusan").value;
 
-    <div class="water-mark">© Restu.P</div>
-  </div>
+            localStorage.setItem("kelas", kelas);
+            localStorage.setItem("jurusan", jurusan);
 
-  <script>
-    document.getElementById("formKelas").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const kelas = document.getElementById("inputKelas").value.trim();
-      const jurusan = document.getElementById("inputJurusan").value.trim();
-
-      if (!kelas || !jurusan) {
-        alert("Kelas dan jurusan wajib diisi!");
-        return;
-      }
-
-      localStorage.setItem("kelas", kelas);
-      localStorage.setItem("jurusan", jurusan);
-      localStorage.setItem("hariIndex", 0);
-      localStorage.removeItem("selesai");
-
-      // efek animasi sebelum pindah
-      document.querySelector('.container').classList.add('fade-out');
-
-      setTimeout(() => {
-        window.location.href = "jadwal.html";
-      }, 400);
-    });
-      window.location.href = "jadwal.html";
+            window.location.href = "jadwal.html";
         });
-        // Efek tombol ketika ditekan di versi mobile
-document.querySelectorAll("button").forEach(btn => {
-  btn.addEventListener("touchstart", () => {
-    btn.style.transform = "scale(0.97)";
-  });
-  btn.addEventListener("touchend", () => {
-    btn.style.transform = "scale(1)";
-  });
-});
-
-// Auto-scroll ke bawah saat tambah pelajaran
-if (document.getElementById("formJadwal")) {
-  document.getElementById("formJadwal").addEventListener("submit", () => {
-    setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 500);
-  });
-}
-
-// Tambahan animasi muncul ketika hari ganti
-document.addEventListener("DOMContentLoaded", () => {
-  const konten = document.getElementById("konten");
-  konten.classList.add("fade-zoom-in");
-});
-
-const style = document.createElement("style");
-style.innerHTML = `
-  .fade-zoom-in {
-    animation: zoomFade 0.5s ease-out;
-  }
-  @keyframes zoomFade {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-`;
-document.head.appendChild(style);
-
-  </script>
-
-          
     </script>
-
 </body>
 </html>
