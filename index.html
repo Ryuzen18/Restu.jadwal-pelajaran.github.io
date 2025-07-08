@@ -6,6 +6,10 @@
   <title>Masukkan Kelas dan Jurusan</title>
   <link rel="stylesheet" href="cssJadwal.css" />
 </head>
+<<<<<<< HEAD
+=======
+<link rel="stylesheet" href="cssJadwal.css">
+>>>>>>> 303c0ef (mengubah versi phone menjadi lebih responsiive)
 <body>
   <div class="container fade-in">
     <h1>Jadwal Pelajaran</h1>
@@ -19,6 +23,7 @@
     <div class="water-mark">© Restu.P</div>
   </div>
 
+<<<<<<< HEAD
   <script>
     document.getElementById("formKelas").addEventListener("submit", function(e) {
       e.preventDefault();
@@ -44,5 +49,51 @@
       }, 400);
     });
   </script>
+=======
+            window.location.href = "jadwal.html";
+        });
+        // Efek tombol ketika ditekan di versi mobile
+document.querySelectorAll("button").forEach(btn => {
+  btn.addEventListener("touchstart", () => {
+    btn.style.transform = "scale(0.97)";
+  });
+  btn.addEventListener("touchend", () => {
+    btn.style.transform = "scale(1)";
+  });
+});
+
+// Auto-scroll ke bawah saat tambah pelajaran
+if (document.getElementById("formJadwal")) {
+  document.getElementById("formJadwal").addEventListener("submit", () => {
+    setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 500);
+  });
+}
+
+// Tambahan animasi muncul ketika hari ganti
+document.addEventListener("DOMContentLoaded", () => {
+  const konten = document.getElementById("konten");
+  konten.classList.add("fade-zoom-in");
+});
+
+const style = document.createElement("style");
+style.innerHTML = `
+  .fade-zoom-in {
+    animation: zoomFade 0.5s ease-out;
+  }
+  @keyframes zoomFade {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+`;
+document.head.appendChild(style);
+
+    </script>
+>>>>>>> 303c0ef (mengubah versi phone menjadi lebih responsiive)
 </body>
 </html>

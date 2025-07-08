@@ -543,3 +543,197 @@ input[type="time"]:focus::-webkit-calendar-picker-indicator {
   opacity: 0.4;
   text-decoration: line-through;
 }
+.jadwal-hari li {
+  position: relative;
+  padding:14px 20px;
+}
+
+.jadwal-hari li .btn-mini {
+  position: absolute;
+  top: 25%;
+  transform: translateY(-50%);
+  right: 1px;
+  margin: 0;
+  padding:6px 19px;
+}
+
+.jadwal-hari li .btn-hapus {
+  right: 10px;
+  padding:6px 10px;
+}
+
+.jadwal-hari li .btn-mini:not(.btn-hapus) {
+  right: 80px; /* tombol edit, lebih ke kiri dari hapus */
+}
+#jam{
+margin-left:10px;
+}
+.jadwal-hari{
+  margin-top: 30px;
+}
+@media screen and (max-width: 600px) {
+  body {
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .container {
+    width: 100%;
+    padding: 20px 15px;
+    border-radius: 15px;
+    margin-top: 70px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .form-row select,
+  .form-row input[type="time"],
+  .form-row button {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  button,
+  .btn-mini {
+    font-size: 0.85rem;
+    padding: 8px 14px;
+  }
+
+  .btn-hapus {
+    background-color: rgba(255, 80, 80, 0.1);
+  }
+
+  .btn-hapus:hover {
+    background-color: rgba(255, 80, 80, 0.3);
+  }
+
+  .jadwal-hari li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 27px;
+  }
+
+  .jadwal-hari li button {
+    margin-top: 6px;
+    margin-left: 6px;
+  }
+
+  .center button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #formKelas input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  #formKelas button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .kalender-mini ul {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .kalender-mini li {
+    flex: 1 0 30%;
+    font-size: 0.9rem;
+    padding: 8px 10px;
+    text-align: center;
+  }
+
+  .water-mark {
+    font-size: 0.8rem;
+    margin-top: 25px;
+  }
+}
+@media screen and (max-width: 600px) {
+  /* Ukuran select, jam, tombol tambah */
+  .form-row select,
+  .form-row input[type="time"],
+  .form-row button {
+    width: auto;
+    min-width: 50px;
+    flex: 1 1 auto;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    
+  }
+
+  /* Tombol tambah khusus */
+  .form-row button[type="submit"] {
+    max-width: 100px;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  /* Tombol center seperti Selanjutnya dan Reset */
+  .center button {
+    width: auto;
+    min-width: 120px;
+    padding: 8px 14px;
+    font-size: 0.95rem;
+    margin: 6px 5px;
+  }
+
+  /* Ukuran tombol mini edit dan hapus */
+  .btn-mini {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    min-width: 60px;
+  }
+  #formJadwal{
+    margin-top:30px;
+  }
+ #kalenderMini{
+  padding:7px 10px;
+  
+ }
+ #mapel,#time{
+  padding:13px;
+ }
+
+ .jadwal-hari li {
+  position: relative;
+  padding:14px 20px;
+}
+
+.jadwal-hari li .btn-mini {
+  position: absolute;
+  top: 25%;
+  transform: translateY(-50%);
+  right: 1px;
+  margin: 0;
+}
+
+.jadwal-hari li .btn-hapus {
+  right: 10px;
+}
+
+.jadwal-hari li .btn-mini:not(.btn-hapus) {
+  right: 80px; /* tombol edit, lebih ke kiri dari hapus */
+}
+
+}
