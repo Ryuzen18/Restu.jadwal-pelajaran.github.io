@@ -1,59 +1,56 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jadwal Lengkap</title>
-  <link rel="stylesheet" href="cssJadwal.css" />
+  <title>Lihat Jadwal</title>
+  <link rel="stylesheet" href="cssJadwal.css">
 </head>
-
 <body>
   <div class="container">
     <h1>Jadwal Lengkap</h1>
-    <div id="tampilan"></div>
-    
-    <div class="center">
-      <button onclick="kembali()">Kembali</button>
-      <button onclick="resetData()">Reset Semua</button>
-    </div>
+    <button onclick="cetakJadwal()" class="btn-cetak">Cetak / Simpan PDF</button>
 
+    <div id="tampilan"></div>
+    <div class="center">
+      <button onclick="resetData()">Reset</button>
+    </div>
     <div class="water-mark">© Restu.P</div>
   </div>
 
   <script>
     const hariList = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+    const kelas = localStorage.getItem("kelas") || "-";
+    const jurusan = localStorage.getItem("jurusan") || "-";
     const tampilan = document.getElementById("tampilan");
 
-    const kelas = localStorage.getItem("kelas") || "Kelas";
-    const jurusan = localStorage.getItem("jurusan") || "Jurusan";
-
-    let html = `<h2>${kelas} - ${jurusan}</h2><div class="grid-jadwal">`;
+    tampilan.innerHTML += `
+      <div class="info-header">
+        <h2>${kelas} - ${jurusan}</h2>
+        <h2>Jadwal Pelajaran</h2>
+      </div>
+    `;
 
     for (let hari of hariList) {
       const data = JSON.parse(localStorage.getItem(`jadwal-${hari}`)) || [];
-      html += `
+      let html = `
         <div class="day">
           <h3>${hari}</h3>
           <ul>
             ${data.map(item => `<li>${item.jam} - ${item.mapel}</li>`).join("")}
           </ul>
-        </div>
-      `;
+        </div>`;
+      tampilan.innerHTML += html;
     }
 
-    html += `</div>`;
-    tampilan.innerHTML = html;
-
+    function cetakJadwal() {
+      window.print();
+    }
     function resetData() {
-      if (confirm("Yakin ingin menghapus semua data jadwal?")) {
+      if (confirm("Yakin ingin menghapus semua jadwal?")) {
         localStorage.clear();
-        location.href = "index.html";
+        window.location.href = "index.html";
       }
-    }
-
-    function kembali() {
-      localStorage.setItem("hariIndex", "0");
-      window.location.href = "index.html";
     }
   </script>
 </body>

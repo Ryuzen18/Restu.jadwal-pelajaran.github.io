@@ -536,7 +536,7 @@ input[type="time"]:focus::-webkit-calendar-picker-indicator {
 .kalender-mini li.active {
   background-color: #6C63FF;
   font-weight: bold;
-  transform: scale(1.1);
+  transform: scale(1.0);
 }
 
 .kalender-mini li.libur {
@@ -674,11 +674,11 @@ margin-left:10px;
   .form-row select,
   .form-row input[type="time"],
   .form-row button {
-    width: auto;
+    width: 100%;
     min-width: 50px;
     flex: 1 1 auto;
     font-size: 0.9rem;
-    padding: 8px 12px;
+    padding: px 12px;
     
   }
 
@@ -717,7 +717,7 @@ margin-left:10px;
 
  .jadwal-hari li {
   position: relative;
-  padding:14px 20px;
+  padding:17px 20px;
 }
 
 .jadwal-hari li .btn-mini {
@@ -734,6 +734,14 @@ margin-left:10px;
 
 .jadwal-hari li .btn-mini:not(.btn-hapus) {
   right: 80px; /* tombol edit, lebih ke kiri dari hapus */
+}
+#jam{
+  position: relative;
+  right: 10px;
+}
+#btnTambah{
+  position: relative;
+  right:8px
 }
 
 }
