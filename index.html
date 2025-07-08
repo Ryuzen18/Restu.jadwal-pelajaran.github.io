@@ -4,11 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Masukkan Kelas dan Jurusan</title>
-  <link rel="stylesheet" href="cssJadwal.css" />
+  <link rel="stylesheet" href="cssJadwal.css" />       
 </head>
-
-<link rel="stylesheet" href="cssJadwal.css">
-
 <body>
   <div class="container fade-in">
     <h1>Jadwal Pelajaran</h1>
@@ -30,12 +27,12 @@
       const jurusan = document.getElementById("inputJurusan").value.trim();
 
       if (!kelas || !jurusan) {
-        alert("Kelas dan jurusan wajib diisi!");
+        alert("Kelas dan jurusan wajib diisi!");       
         return;
       }
 
       localStorage.setItem("kelas", kelas);
-      localStorage.setItem("jurusan", jurusan);
+      localStorage.setItem("jurusan", jurusan);        
       localStorage.setItem("hariIndex", 0);
       localStorage.removeItem("selesai");
 
@@ -43,55 +40,55 @@
       document.querySelector('.container').classList.add('fade-out');
 
       setTimeout(() => {
-        window.location.href = "jadwal.html";
+        window.location.href = "jadwal.html";      
       }, 400);
     });
+
+    // Efek tombol ketika ditekan di versi mobile  
+    document.querySelectorAll("button").forEach(btn => {   
+      btn.addEventListener("touchstart", () => {
+        btn.style.transform = "scale(0.97)";
+      });
+      btn.addEventListener("touchend", () => {
+        btn.style.transform = "scale(1)";
+      });
+    });
+
+    // Auto-scroll ke bawah saat tambah pelajaran
+    if (document.getElementById("formJadwal")) {
+      document.getElementById("formJadwal").addEventListener("submit", () => {
+        setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 500);
+      });
+    }
+
+    // Tambahan animasi muncul ketika hari ganti
+    document.addEventListener("DOMContentLoaded", () => {  
+      const konten = document.getElementById("konten");    
+      if (konten) konten.classList.add("fade-zoom-in");
+    });
+
+    const style = document.createElement("style");
+    style.innerHTML = `
+      .fade-zoom-in {
+        animation: zoomFade 0.5s ease-out;
+      }
+      @keyframes zoomFade {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }`;
+    document.head.appendChild(style);
   </script>
 
-            window.location.href = "jadwal.html";
-        });
-        // Efek tombol ketika ditekan di versi mobile
-document.querySelectorAll("button").forEach(btn => {
-  btn.addEventListener("touchstart", () => {
-    btn.style.transform = "scale(0.97)";
-  });
-  btn.addEventListener("touchend", () => {
-    btn.style.transform = "scale(1)";
-  });
-});
-
-// Auto-scroll ke bawah saat tambah pelajaran
-if (document.getElementById("formJadwal")) {
-  document.getElementById("formJadwal").addEventListener("submit", () => {
-    setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 500);
-  });
-}
-
-// Tambahan animasi muncul ketika hari ganti
-document.addEventListener("DOMContentLoaded", () => {
-  const konten = document.getElementById("konten");
-  konten.classList.add("fade-zoom-in");
-});
-
-const style = document.createElement("style");
-style.innerHTML = `
-  .fade-zoom-in {
-    animation: zoomFade 0.5s ease-out;
-  }
-  @keyframes zoomFade {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-`;
-document.head.appendChild(style);
+          
 
     </script>
+
 
 </body>
 </html>
